@@ -1,0 +1,19 @@
+{
+  "name": "micro-frontends",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Anderson Malheiro de Carvalho <anderson.malheiro@aluno.fapce.edu.br>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "typescript": "^4.4.4",
+    "wsrun": "^5.2.4"
+  },
+  "scripts": {
+    "start": "concurrently \"wsrun --parallel start\""
+  }
+}

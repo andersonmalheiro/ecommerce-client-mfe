@@ -1,0 +1,13 @@
+{
+  "author": "Anderson Malheiro de Carvalho <anderson.malheiro@aluno.fapce.edu.br>",
+  "name": "shared-types",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "echo \"started shared-types\""
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}
