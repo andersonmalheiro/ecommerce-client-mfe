@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -34,7 +35,9 @@ const Login = () => {
         </div>
 
         <div className={styles.buttonsRow}>
-          <button className={styles.buttonSecondary}>Register</button>
+          <Link to="/register" className={styles.buttonSecondary}>
+            Register
+          </Link>
           <button className={styles.buttonPrimary}>Log in</button>
         </div>
       </form>
