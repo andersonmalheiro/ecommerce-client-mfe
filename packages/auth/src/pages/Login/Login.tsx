@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { login } from "../../services/auth.service";
@@ -12,7 +13,25 @@ export default function Login() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await login({ email, password });
+    try {
+      await login({ email, password });
+      toast.success("Registered successfully", {
+        autoClose: 3000,
+        pauseOnHover: false,
+        position: "top-right",
+      });
+    } catch (error) {
+      toast.error(
+        `Ops... ${
+          (error as any)?.response?.data?.msg || "something went wrong"
+        }`,
+        {
+          autoClose: 3000,
+          pauseOnHover: false,
+          position: "top-right",
+        }
+      );
+    }
   };
 
   return (

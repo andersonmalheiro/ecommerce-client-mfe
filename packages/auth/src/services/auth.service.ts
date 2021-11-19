@@ -18,17 +18,17 @@ interface RegisterData {
 export async function login(data: LoginData) {
   try {
     const res = await API.post<LoginResponse>("/auth/login", data);
-    console.log("token", res.data.access_token);
+    return res;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
 export async function register(data: RegisterData) {
   try {
     const res = await API.post("/auth/register", data);
-    console.log(res);
+    return res;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }

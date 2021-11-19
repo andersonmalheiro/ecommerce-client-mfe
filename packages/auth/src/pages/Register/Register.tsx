@@ -1,6 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 import { register } from "../../services/auth.service";
+
 import styles from "./Register.module.css";
 
 const Register = () => {
@@ -12,9 +16,29 @@ const Register = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await register({ name, email, password });
-    alert("Success!");
-    navigate("/");
+    try {
+      await register({ name, email, password });
+
+      toast.success("Registered successfully", {
+        autoClose: 3000,
+        onClose: () => navigate("/"),
+        pauseOnHover: false,
+        position: "top-right",
+      });
+    } catch (error) {
+      toast.error(
+        `Ops... ${
+          (error as any)?.response?.data?.msg ||
+          (error as any)?.message ||
+          "something went wrong"
+        }`,
+        {
+          autoClose: 3000,
+          pauseOnHover: false,
+          position: "top-right",
+        }
+      );
+    }
   };
 
   return (
@@ -22,59 +46,48 @@ const Register = () => {
       <form className={styles.registerCard} onSubmit={handleSubmit}>
         <h1 className={styles.registerTitle}>Register</h1>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="name" className={styles.label}>
-            User name
-          </label>
-          <input
-            className={styles.input}
-            type="name"
-            name="name"
-            id="name"
-            placeholder="John Doe"
-            autoComplete="off"
-            value={name || ""}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
+        <Input
+          label="User name *"
+          type="name"
+          name="name"
+          id="name"
+          placeholder="John Doe"
+          autoComplete="off"
+          value={name || ""}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
-          <input
-            className={styles.input}
-            type="email"
-            name="email"
-            id="email"
-            placeholder="email@email.com"
-            autoComplete="off"
-            value={email || ""}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="password" className={styles.label}>
-            Password
-          </label>
-          <input
-            className={styles.input}
-            type="password"
-            name="password"
-            id="password"
-            placeholder="******"
-            value={password || ""}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <Input
+          label="Email *"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="email@email.com"
+          autoComplete="off"
+          value={email || ""}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <Input
+          label="Password *"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="******"
+          value={password || ""}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
         <div className={styles.buttonsRow}>
-          <Link to="/" className={styles.buttonSecondary}>
+          <Button variant="secondary" isLink link="/">
             Log in
-          </Link>
-          <button type="submit" className={styles.buttonPrimary}>
+          </Button>
+          <Button variant="primary" type="submit">
             Register
-          </button>
+          </Button>
         </div>
       </form>
     </div>
