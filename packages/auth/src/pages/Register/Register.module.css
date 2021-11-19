@@ -26,3 +26,14 @@
   display: flex;
   gap: 10px;
 }
+
+.signin {
+  font-size: 12px;
+  color: #000;
+  margin: 0;
+}
+
+.signin > a {
+  color: #000;
+  font-weight: bold;
+}

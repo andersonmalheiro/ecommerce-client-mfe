@@ -26,3 +26,14 @@
   display: flex;
   gap: 10px;
 }
+
+.register {
+  font-size: 12px;
+  color: #000;
+  margin: 0;
+}
+
+.register > a {
+  color: #000;
+  font-weight: bold;
+}

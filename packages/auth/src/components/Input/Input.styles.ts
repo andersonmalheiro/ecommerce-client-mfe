@@ -27,3 +27,11 @@ export const InputStyled = styled.input`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
 `;
+
+export const RequiredIndicator = styled.span`
+  &::before {
+    content: "*";
+    color: red;
+    font-size: 14px;
+  }
+`;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -44,10 +44,10 @@ const Register = () => {
   return (
     <div className={styles.container}>
       <form className={styles.registerCard} onSubmit={handleSubmit}>
-        <h1 className={styles.registerTitle}>Register</h1>
+        <h1 className={styles.registerTitle}>Create account</h1>
 
         <Input
-          label="User name *"
+          label="User name"
           type="name"
           name="name"
           id="name"
@@ -59,7 +59,7 @@ const Register = () => {
         />
 
         <Input
-          label="Email *"
+          label="Email"
           type="email"
           name="email"
           id="email"
@@ -71,7 +71,7 @@ const Register = () => {
         />
 
         <Input
-          label="Password *"
+          label="Password"
           type="password"
           name="password"
           id="password"
@@ -82,13 +82,14 @@ const Register = () => {
         />
 
         <div className={styles.buttonsRow}>
-          <Button variant="secondary" isLink link="/">
-            Log in
-          </Button>
           <Button variant="primary" type="submit">
-            Register
+            Submit
           </Button>
         </div>
+
+        <p className={styles.signin}>
+          Already have an account? <Link to="/">Sign in</Link>
+        </p>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -48,6 +49,7 @@ export default function Login() {
           autoComplete="off"
           value={email || ""}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <Input
@@ -58,16 +60,18 @@ export default function Login() {
           placeholder="******"
           value={password || ""}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <div className={styles.buttonsRow}>
-          <Button variant="secondary" isLink link="/register">
-            Register
-          </Button>
           <Button variant="primary" type="submit">
             Log in
           </Button>
         </div>
+
+        <p className={styles.register}>
+          New user? <Link to="/register">Register now</Link>
+        </p>
       </form>
     </div>
   );
