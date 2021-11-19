@@ -15,20 +15,20 @@ interface RegisterData {
   password: string;
 }
 
-export const login = async (data: LoginData) => {
+export async function login(data: LoginData) {
   try {
     const res = await API.post<LoginResponse>("/auth/login", data);
     console.log("token", res.data.access_token);
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-export const register = async (data: RegisterData) => {
+export async function register(data: RegisterData) {
   try {
     const res = await API.post("/auth/register", data);
     console.log(res);
   } catch (error) {
     console.error(error);
   }
-};
+}
