@@ -7,7 +7,15 @@ import { login } from "../../services/auth.service";
 
 import styles from "./Login.module.css";
 
-export default function Login() {
+interface LoginProps {
+  registerLink: string;
+  successCB?: (...args: any[]) => void;
+  errorCB?: (error: unknown) => void;
+}
+
+export default function Login(props: LoginProps) {
+  const { successCB, errorCB, registerLink } = props;
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -15,12 +23,15 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      await login({ email, password });
-      toast.success("Registered successfully", {
+      const res = await login({ email, password });
+
+      toast.success("Logged successfully", {
         autoClose: 3000,
         pauseOnHover: false,
         position: "top-right",
       });
+
+      successCB && successCB(res);
     } catch (error) {
       toast.error(
         `Ops... ${
@@ -32,6 +43,8 @@ export default function Login() {
           position: "top-right",
         }
       );
+
+      errorCB && errorCB(error);
     }
   };
 
@@ -70,7 +83,7 @@ export default function Login() {
         </div>
 
         <p className={styles.register}>
-          New user? <Link to="/register">Register now</Link>
+          New user? <Link to={registerLink}>Register now</Link>
         </p>
       </form>
     </div>

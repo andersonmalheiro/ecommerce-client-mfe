@@ -7,7 +7,12 @@ import { register } from "../../services/auth.service";
 
 import styles from "./Register.module.css";
 
-const Register = () => {
+interface RegisterProps {
+  loginLink: string;
+}
+
+const Register = (props: RegisterProps) => {
+  const { loginLink } = props;
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -88,7 +93,7 @@ const Register = () => {
         </div>
 
         <p className={styles.signin}>
-          Already have an account? <Link to="/">Sign in</Link>
+          Already have an account? <Link to={loginLink}>Sign in</Link>
         </p>
       </form>
     </div>

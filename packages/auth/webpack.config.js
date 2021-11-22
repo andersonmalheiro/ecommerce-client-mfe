@@ -44,7 +44,10 @@ module.exports = {
       name: "auth",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Login": "./src/pages/Login",
+        "./Register": "./src/pages/Register",
+      },
       shared: {
         ...deps,
         react: {
@@ -54,6 +57,14 @@ module.exports = {
         "react-dom": {
           singleton: true,
           requiredVersion: deps["react-dom"],
+        },
+        "react-toastify": {
+          singleton: true,
+          requiredVersion: deps["react-toastify"],
+        },
+        "react-router-dom": {
+          singleton: true,
+          requiredVersion: deps["react-router-dom"],
         },
       },
     }),
