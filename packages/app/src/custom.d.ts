@@ -11,3 +11,9 @@ declare module "shared_components/*" {
 
   export = components;
 }
+
+declare module "auth/*" {
+  const components: React.ComponentType<any>;
+
+  export = components;
+}

@@ -45,7 +45,9 @@ module.exports = {
       name: "app",
       filename: "remoteEntry.js",
       remotes: {
-        "shared_components": "shared_components@http://localhost:3005/remoteEntry.js"
+        shared_components:
+          "shared_components@http://localhost:3005/remoteEntry.js",
+        auth: "auth@http://localhost:3003/remoteEntry.js",
       },
       exposes: {},
       shared: {
@@ -57,6 +59,14 @@ module.exports = {
         "react-dom": {
           singleton: true,
           requiredVersion: deps["react-dom"],
+        },
+        "react-toastify": {
+          singleton: true,
+          requiredVersion: deps["react-toastify"],
+        },
+        "react-router-dom": {
+          singleton: true,
+          requiredVersion: deps["react-router-dom"],
         },
       },
     }),
