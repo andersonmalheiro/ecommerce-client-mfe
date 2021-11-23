@@ -7,7 +7,12 @@ const Header = (props: IHeaderProps) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.logo}>{title}</h1>
+      <a className={styles.logo} href="/">
+        {title}
+      </a>
+      <a className={styles.link} href="/auth/login">
+        Login
+      </a>
     </div>
   );
 };

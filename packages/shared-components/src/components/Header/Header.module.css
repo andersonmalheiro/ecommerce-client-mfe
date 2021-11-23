@@ -9,7 +9,18 @@
   padding: 0 1em;
 }
 
-.logo {
+.logo,
+.logo:visited {
   font-weight: bold;
   font-size: 20px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.link,
+.link:visited {
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000000;
 }
