@@ -13,8 +13,8 @@ interface LoginProps {
   errorCB?: (error: unknown) => void;
 }
 
-export default function Login(props: LoginProps) {
-  const { successCB, errorCB, registerLink } = props;
+const Login: React.FC<LoginProps> = (props) => {
+  const { successCB, errorCB, registerLink, ...rest } = props;
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -49,7 +49,7 @@ export default function Login(props: LoginProps) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} {...rest}>
       <form className={styles.loginCard} onSubmit={handleSubmit}>
         <h1 className={styles.loginTitle}>Login</h1>
 
@@ -88,4 +88,6 @@ export default function Login(props: LoginProps) {
       </form>
     </div>
   );
-}
+};
+
+export default Login;
