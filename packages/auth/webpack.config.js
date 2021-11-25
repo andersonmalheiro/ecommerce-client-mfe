@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = {
   output: {
-    publicPath: "http://localhost:3003/",
+    publicPath: "http://localhost:4000/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 3003,
+    port: 4000,
     historyApiFallback: true,
   },
 
@@ -36,17 +36,35 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "images/[hash]-[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "auth",
+      name: "auth_mf",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
         "./Login": "./src/pages/Login",
         "./Register": "./src/pages/Register",
+        "./AuthStatus": "./src/components/AuthStatus",
+        "./Button": "./src/components/Button",
+        "./Input": "./src/components/Input",
       },
       shared: {
         ...deps,
