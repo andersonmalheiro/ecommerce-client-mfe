@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Header.module.css";
-import { IHeaderProps } from 'shared-types';
+import { IHeaderProps } from "shared-types";
+
+const AuthStatus = React.lazy(() => import("auth_mf/AuthStatus"));
 
 const Header = (props: IHeaderProps) => {
   const { title } = props;
@@ -10,9 +12,20 @@ const Header = (props: IHeaderProps) => {
       <a className={styles.logo} href="/">
         {title}
       </a>
-      <a className={styles.link} href="/auth/login">
-        Login
-      </a>
+
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+        }}
+      >
+        <React.Suspense fallback={<span>loading</span>}>
+          <AuthStatus
+            handleAction={() => window.location.replace("/auth/login")}
+          />
+        </React.Suspense>
+      </div>
     </div>
   );
 };

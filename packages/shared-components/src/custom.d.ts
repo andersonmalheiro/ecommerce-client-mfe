@@ -5,3 +5,9 @@ declare module "*.css" {
   const classNames: IClassNames;
   export = classNames;
 }
+
+declare module "auth_mf/*" {
+  const components: React.ComponentType<any>;
+
+  export = components;
+}
