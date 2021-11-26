@@ -12,7 +12,7 @@ declare module "shared_components/*" {
   export = components;
 }
 
-declare module "auth/*" {
+declare module "auth_mf/*" {
   const components: React.ComponentType<any>;
 
   export = components;

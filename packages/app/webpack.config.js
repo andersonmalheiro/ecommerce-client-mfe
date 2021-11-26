@@ -45,9 +45,9 @@ module.exports = {
       name: "app",
       filename: "remoteEntry.js",
       remotes: {
+        auth_mf: "auth_mf@http://localhost:4000/remoteEntry.js",
         shared_components:
-          "shared_components@http://localhost:3005/remoteEntry.js",
-        auth: "auth@http://localhost:3003/remoteEntry.js",
+          "shared_components@http://localhost:4001/remoteEntry.js",
       },
       exposes: {},
       shared: {

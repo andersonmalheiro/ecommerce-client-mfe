@@ -1,7 +1,7 @@
 import React from "react";
 import RemoteComponentWrapper from "../RemoteComponentWrapper";
 
-const Register = React.lazy(() => import("auth/Register"));
+const Register = React.lazy(() => import("auth_mf/Register"));
 
 const RegisterWrapper = () => {
   document.title = "MF - Register";

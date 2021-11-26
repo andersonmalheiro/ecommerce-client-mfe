@@ -1,9 +1,10 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import RemoteComponentWrapper from "../RemoteComponentWrapper";
 
-const Login = React.lazy(() => import("auth/Login"));
+const Login = React.lazy(() => import("auth_mf/Login"));
 const Header = React.lazy(() => import("shared_components/Header"));
 const Footer = React.lazy(() => import("shared_components/Footer"));
 
@@ -11,32 +12,21 @@ const LoginWrapper = () => {
   document.title = "MF - Authentication";
 
   const navigate = useNavigate();
-  const [_, setCookie, removeCookie] = useCookies(["auth"]);
-  const [token, setToken] = React.useState<string | null>(null);
+  const [cookies] = useCookies(["auth"]);
 
-  const loginSuccessCallback = (response: {
-    data: { access_token: string };
-  }) => {
-    setToken(response.data.access_token);
-  };
-
-  const loginErrorCallback = (error: unknown) => {
-    console.error("error :>> ", error);
-  };
+  // Checking if the user is already logged in
+  React.useEffect(() => {
+    if (cookies.auth) {
+      toast.success("Already authenticated.");
+      navigate("/");
+    }
+  }, []);
 
   React.useEffect(() => {
-    if (token) {
-      setCookie("auth", `Bearer ${token}`, { path: "/" });
-
-      navigate("/", {
-        state: {
-          token,
-        },
-      });
-    } else {
-      removeCookie("auth");
+    if (cookies.auth) {
+      navigate("/");
     }
-  }, [token]);
+  }, [cookies.auth]);
 
   return (
     <>
@@ -49,8 +39,6 @@ const LoginWrapper = () => {
           style={{
             height: "calc(100vh - 100px)",
           }}
-          errorCB={loginErrorCallback}
-          successCB={loginSuccessCallback}
           registerLink="/auth/register"
         />
       </RemoteComponentWrapper>
