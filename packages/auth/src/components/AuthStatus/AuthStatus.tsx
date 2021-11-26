@@ -15,17 +15,26 @@ const AuthStatus = (props: AuthStatusProps) => {
   const [signed, setSigned] = React.useState(false);
 
   React.useEffect(() => {
-    setSigned(!!cookies.auth);
+    const { auth } = cookies;
+    const access_token = localStorage.getItem("access_token");
+
+    if (
+      (access_token === null && auth) ||
+      (access_token && !auth) ||
+      (auth && access_token)
+    ) {
+      setSigned(true);
+    }
   }, [cookies.auth]);
 
   return (
     <>
       {signed ? (
-        <AuthButton>
+        <AuthButton title="Signed in">
           <AuthenticatedIcon />
         </AuthButton>
       ) : (
-        <AuthButton onClick={handleAction}>
+        <AuthButton onClick={handleAction} title="Not signed">
           <UnauthenticatedIcon />
         </AuthButton>
       )}

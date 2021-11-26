@@ -1,21 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { useAuth } from "../../context/AuthContext";
 import { login } from "../../services/auth.service";
-
 import styles from "./Login.module.css";
 
 interface LoginProps {
   registerLink: string;
-  successCB?: (...args: any[]) => void;
-  errorCB?: (error: unknown) => void;
+  navigateToOnSuccess?: string;
 }
 
 const Login: React.FC<LoginProps> = (props) => {
-  const { successCB, errorCB, registerLink, ...rest } = props;
-
+  const { navigateToOnSuccess, registerLink, ...rest } = props;
+  const { setAuthState } = useAuth();
+  const navigate = useNavigate();
+  const [_, setCookie] = useCookies(["auth"]);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -31,7 +33,11 @@ const Login: React.FC<LoginProps> = (props) => {
         position: "top-right",
       });
 
-      successCB && successCB(res);
+      const { access_token } = res.data;
+      setCookie("auth", `${access_token}`, { path: "/" });
+      localStorage.setItem("access_token", access_token);
+      setAuthState("authenticated");
+      navigate("/profile");
     } catch (error) {
       toast.error(
         `Ops... ${
@@ -43,8 +49,6 @@ const Login: React.FC<LoginProps> = (props) => {
           position: "top-right",
         }
       );
-
-      errorCB && errorCB(error);
     }
   };
 
