@@ -8,7 +8,7 @@ export interface IUserData {
 
 export async function getUser(id: number): Promise<IUserData | null> {
   try {
-    const res = await API.get<IUserData>(`/customers/${id}`);
+    const res = await API.get<IUserData>(`/users/${id}`);
     return res.data;
   } catch (error) {
     throw error;
