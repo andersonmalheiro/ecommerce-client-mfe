@@ -39,6 +39,7 @@ const Login: React.FC<LoginProps> = (props) => {
       setAuthState("authenticated");
       navigate("/profile");
     } catch (error) {
+      console.error(error);
       toast.error(
         `Ops... ${
           (error as any)?.response?.data?.msg || "something went wrong"

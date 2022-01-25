@@ -80,7 +80,10 @@ const AuthContextProvider: React.FC = ({ children }) => {
 };
 
 export const useAuth = () => {
-  return React.useContext(AuthContext);
+  const { logout, setAuthState, setToken, token, authState } =
+    React.useContext(AuthContext);
+
+  return { authState, logout, setAuthState, setToken, token };
 };
 
 export default AuthContextProvider;

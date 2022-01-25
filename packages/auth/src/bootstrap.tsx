@@ -47,4 +47,5 @@ const App = () => {
     </AuthContextProvider>
   );
 };
+
 ReactDOM.render(<App />, document.getElementById("app"));

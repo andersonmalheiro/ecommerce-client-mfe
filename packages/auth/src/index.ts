@@ -1,1 +1,2 @@
-import("./App");
+// @ts-ignore
+import("./bootstrap");
