@@ -13,7 +13,7 @@ export const Container = styled(Link)`
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  max-height: 250px;
+  max-height: fit-content;
 
   &:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -21,10 +21,11 @@ export const Container = styled(Link)`
   }
 `;
 
+
+
 export const ProductImg = styled.img`
   height: 150px;
-  max-width: 150px;
-  width: auto;
+  width: 100%;
 `;
 
 export const ProductMeta = styled.div`
@@ -32,6 +33,7 @@ export const ProductMeta = styled.div`
   flex-direction: column;
   flex: 1;
   width: 100%;
+  justify-content: space-evenly;
 
   h1 {
     font-size: 14px;

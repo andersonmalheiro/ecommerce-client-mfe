@@ -9,13 +9,13 @@ export interface ProductProps {
   image: string;
   name: string;
   price: number;
+  category_name?: string;
+  vendor_name?: string;
 }
 
 const Product = (props: ProductProps) => {
   const { description, image, name, price, id } = props;
   const location = useLocation();
-
-  console.log(location);
 
   return (
     <Container
