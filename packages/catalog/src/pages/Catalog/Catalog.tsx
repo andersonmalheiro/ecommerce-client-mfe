@@ -1,49 +1,30 @@
 import React from "react";
+import FiltersPanel from "../../components/Filters/FiltersPanel";
 import Product, { ProductProps } from "../../components/Product";
-import { Container } from "./Catalog.styles";
+import { randomId } from "../../utils/random";
+import { Container, ProductList } from "./Catalog.styles";
 
-const Catalog: React.FC = ({children, ...rest}) => {
-  const randomId = () => Math.floor(Math.random() * 10000);
-  const [products, setProducts] = React.useState<Array<ProductProps>>([
-    {
-      description: "Best fidget spinner in the world",
+
+const Catalog: React.FC = ({ children, ...rest }) => {
+  const [products, setProducts] = React.useState<Array<ProductProps>>(
+    Array.from({ length: 20 }).map((_, index) => ({
+      description: "Product description",
       id: randomId(),
-      image:
-        "https://a-static.mlcdn.com.br/1500x1500/fidget-spinner-original-vermelho-candide/candide/2601vm/a0414dc9512474e5f4b29c75d2802880.jpg",
-      name: "Fidged spinner vermelho",
-      price: 11.99,
-    },
-    {
-      description: "Best fidget spinner in the world",
-      id: randomId(),
-      image:
-        "https://a-static.mlcdn.com.br/1500x1500/fidget-spinner-original-vermelho-candide/candide/2601vm/a0414dc9512474e5f4b29c75d2802880.jpg",
-      name: "Fidged spinner vermelho",
-      price: 11.99,
-    },
-    {
-      description: "Best fidget spinner in the world",
-      id: randomId(),
-      image:
-        "https://a-static.mlcdn.com.br/1500x1500/fidget-spinner-original-vermelho-candide/candide/2601vm/a0414dc9512474e5f4b29c75d2802880.jpg",
-      name: "Fidged spinner vermelho",
-      price: 11.99,
-    },
-    {
-      description: "Best fidget spinner in the world",
-      id: randomId(),
-      image:
-        "https://a-static.mlcdn.com.br/1500x1500/fidget-spinner-original-vermelho-candide/candide/2601vm/a0414dc9512474e5f4b29c75d2802880.jpg",
-      name: "Fidged spinner vermelho",
-      price: 11.99,
-    },
-  ]);
+      image: `https://picsum.photos/200?random=${index + 1}`,
+      name: `Product ${Math.random().toString(36).substring(2)}`,
+      price: Number((Math.random() * 1000).toFixed(2)),
+    }))
+  );
 
   return (
     <Container {...rest}>
-      {products.map((product) => (
-        <Product key={product.id} {...product} />
-      ))}
+      <FiltersPanel />
+
+      <ProductList>
+        {products.map((product) => (
+          <Product key={product.id} {...product} />
+        ))}
+      </ProductList>
     </Container>
   );
 };
