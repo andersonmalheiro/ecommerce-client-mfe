@@ -1,48 +1,22 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { merge } = require("webpack-merge");
+const path = require('path');
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
-const deps = require("./package.json").dependencies;
-module.exports = {
-  output: {
-    publicPath: "http://localhost:3000/",
-  },
+const commonConfig = require("./webpack.common");
+const deps = require("../package.json").dependencies;
 
-  resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-  },
+const devConfig = {
+  mode: "development",
+
+  devtool: 'inline-source-map',
 
   devServer: {
-    port: 3000,
-    historyApiFallback: true,
-    open: false,
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.m?js/,
-        type: "javascript/auto",
-        resolve: {
-          fullySpecified: false,
-        },
-      },
-      {
-        test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-      },
-      {
-        test: /\.(ts|tsx|js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-    ],
+    static: path.resolve(__dirname, '../dist'),
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "app",
+      name: "app_shell",
       filename: "remoteEntry.js",
       remotes: {
         auth_mf: "auth_mf@http://localhost:4000/remoteEntry.js",
@@ -50,7 +24,6 @@ module.exports = {
         shared_components:
           "shared_components@http://localhost:4001/remoteEntry.js",
       },
-      exposes: {},
       shared: {
         ...deps,
         react: {
@@ -71,8 +44,7 @@ module.exports = {
         },
       },
     }),
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-    }),
   ],
 };
+
+module.exports = merge(devConfig, commonConfig);

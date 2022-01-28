@@ -14,7 +14,7 @@ const CatalogWrapper = () => {
         <Header title="MF App" />
       </RemoteComponentWrapper>
 
-      <RemoteComponentWrapper message="auth service not available">
+      <RemoteComponentWrapper message="Catalog not available...">
         <div
           style={{
             height: "calc(100vh - 100px)",
