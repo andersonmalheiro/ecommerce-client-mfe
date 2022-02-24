@@ -14,6 +14,7 @@
     "wsrun": "^5.2.4"
   },
   "scripts": {
-    "start": "concurrently \"wsrun --parallel start\""
+    "start": "concurrently \"wsrun --parallel start\"",
+    "install:all": "concurrently \"wsrun --parallel install\""
   }
 }

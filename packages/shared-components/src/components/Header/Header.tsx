@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./Header.module.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { IHeaderProps } from "shared-types";
+import styles from "./Header.module.css";
 
 const AuthStatus = React.lazy(() => import("auth_mf/AuthStatus"));
+const MiniCart = React.lazy(() => import("cart_mf/MiniCart"));
 
 const Header = (props: IHeaderProps) => {
   const { title } = props;
@@ -17,10 +18,14 @@ const Header = (props: IHeaderProps) => {
       <div
         style={{
           display: "flex",
-          gap: "10px",
+          gap: "15px",
           alignItems: "center",
         }}
       >
+        <React.Suspense fallback={<span>loading</span>}>
+          <MiniCart />
+        </React.Suspense>
+
         <React.Suspense fallback={<span>loading</span>}>
           <Link to="/auth/login">
             <AuthStatus />

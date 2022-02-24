@@ -11,3 +11,9 @@ declare module "auth_mf/*" {
 
   export = components;
 }
+
+declare module "cart_mf/*" {
+  const components: React.ComponentType<any>;
+
+  export = components;
+}
