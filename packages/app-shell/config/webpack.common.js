@@ -16,6 +16,9 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
     open: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
 
   module: {

@@ -15,6 +15,9 @@ module.exports = {
     port: 4001,
     historyApiFallback: true,
     open: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
 
   module: {
@@ -55,6 +58,7 @@ module.exports = {
       filename: "remoteEntry.js",
       remotes: {
         auth_mf: "auth_mf@http://localhost:4000/remoteEntry.js",
+        cart_mf: "cart_mf@http://localhost:4003/remoteEntry.js",
       },
       exposes: {
         "./styles.css": "./src/index.css",
