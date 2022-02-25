@@ -1,5 +1,4 @@
 import React from "react";
-import { useCookies } from "react-cookie";
 import { IHeaderProps } from "shared-types";
 import ErrorBoundary from "../../error-boundary";
 import Fallback from "../../fallback";
@@ -12,12 +11,6 @@ const Footer = React.lazy(() => import("shared_components/Footer"));
 
 export default function Home() {
   document.title = "MF - Home";
-
-  const [cookies] = useCookies();
-
-  React.useEffect(() => {
-    console.log("home cookies ->", cookies);
-  }, [cookies]);
 
   return (
     <ErrorBoundary errorMessage="Components service unavailable">

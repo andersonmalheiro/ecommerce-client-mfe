@@ -29,8 +29,6 @@ const ProductDetails = () => {
     vendor_name: "Vendor name",
   };
 
-  console.log("location.pathname :>> ", location.pathname);
-
   return (
     <Container>
       <h1>Product details</h1>

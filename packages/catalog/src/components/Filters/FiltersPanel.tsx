@@ -31,7 +31,7 @@ const FiltersPanel = () => {
   ]);
 
   const [filters, setFilters] = React.useState<Filters>({
-    category: []
+    category: [],
   });
 
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -57,10 +57,6 @@ const FiltersPanel = () => {
       });
     }
   };
-
-  React.useEffect(() => {
-    console.log('filters :>> ', filters);
-  }, [filters]);
 
   return (
     <Container>

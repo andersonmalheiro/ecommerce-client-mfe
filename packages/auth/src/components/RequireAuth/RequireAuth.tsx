@@ -1,13 +1,9 @@
 import React from "react";
-import { useAuth } from "../../context/AuthContext";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const RequireAuth: React.FC = ({ children }) => {
   const { authState } = useAuth();
-
-  React.useEffect(() => {
-    console.log("authState :>> ", authState);
-  }, [authState]);
 
   if (!authState) {
     return null;

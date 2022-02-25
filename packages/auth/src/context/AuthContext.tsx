@@ -42,13 +42,11 @@ const AuthContextProvider: React.FC = ({ children }) => {
   }, [token]);
 
   const handleCheck = React.useCallback(async () => {
-    console.log("handleCheck");
-
     try {
       await checkToken();
       setAuthState("authenticated");
     } catch (error) {
-      console.log((error as { message: string }).message);
+      console.error((error as { message: string }).message);
       setAuthState("not-authenticated");
     }
   }, [authState, checkToken]);

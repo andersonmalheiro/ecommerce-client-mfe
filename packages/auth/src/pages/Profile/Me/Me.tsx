@@ -18,8 +18,6 @@ const Me = () => {
     if (token) {
       const decoded: TokenData = jwt_decode(token);
 
-      console.log("decoded :>> ", decoded);
-
       try {
         const res = await getUser(decoded.userId);
         res && setUser(res);
