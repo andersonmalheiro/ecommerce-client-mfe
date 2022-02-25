@@ -1,27 +1,26 @@
 import styled, { css } from 'styled-components';
 
-type CartContainerProps = {
+type MiniCartPopupContainerProps = {
   side: 'left' | 'right';
   offset: number;
 };
 
-export const CartContainer = styled.div<CartContainerProps>`
+export const MiniCartPopupContainer = styled.div<MiniCartPopupContainerProps>`
   border: 1px solid #000;
   border-radius: 0;
   padding: 10px;
   background: #fff;
   position: absolute;
   min-height: 200px;
-  min-width: 200px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   top: 40px;
 
-  ${({ offset, side }) =>
-    css`
-      left: ${side === 'left' ? `${offset}px` : 'unset'};
-      right: ${side === 'right' ? `${offset}px` : 'unset'};
-    `}
+  ${({ offset, side }) => css`
+    left: ${side === 'left' ? `${offset}px` : 'unset'};
+    right: ${side === 'right' ? `${offset}px` : 'unset'};
+  `}
 
   &::before {
     content: '';
@@ -31,21 +30,20 @@ export const CartContainer = styled.div<CartContainerProps>`
     position: absolute;
     top: -10px;
 
-    ${({ side }) =>
-      css`
-        left: ${side === 'left' ? '5px' : 'unset'};
-        right: ${side === 'right' ? '5px' : 'unset'};
-      `}
+    ${({ side }) => css`
+      left: ${side === 'left' ? '5px' : 'unset'};
+      right: ${side === 'right' ? '5px' : 'unset'};
+    `}
   }
 `;
 
-export const CartTitle = styled.h1`
+export const MiniCartPopupTitle = styled.h1`
   font-size: 18px;
   font-weight: bold;
   margin: 0;
 `;
 
-export const CartContent = styled.div`
+export const MiniCartPopupContent = styled.div`
   display: flex;
   flex: 1;
   padding-top: 20px;
@@ -66,7 +64,7 @@ export const CartContent = styled.div`
   }
 `;
 
-export const CartEmptyMsg = styled.span`
+export const MiniCartEmptyMsg = styled.span`
   display: flex;
   flex: 1;
   align-items: center;
@@ -74,7 +72,7 @@ export const CartEmptyMsg = styled.span`
   font-size: 14px;
 `;
 
-export const CartItem = styled.div`
+export const MiniCartItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,4 +89,13 @@ export const CartItem = styled.div`
 
   .value {
   }
+`;
+
+export const MiniCartPopupFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 `;

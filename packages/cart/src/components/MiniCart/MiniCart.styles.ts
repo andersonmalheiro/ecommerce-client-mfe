@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface MiniCartContainerProps {
+  dragging: boolean;
+}
+
+export const MiniCartContainer = styled.div<MiniCartContainerProps>`
   position: relative;
+  /* padding: ${({ dragging }) => (dragging ? '0 5px' : 'unset')}; */
+  border: ${({ dragging }) => (dragging ? '2px dashed #000' : 'unset')};
+  background: ${({ dragging }) => (dragging ? '#b2dfdb' : 'unset')};
+  transition: all 0.3s ease-in-out;
 `;
 
-export const CartButton = styled.button`
+export const MiniCartButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
@@ -15,7 +23,7 @@ export const CartButton = styled.button`
   position: relative;
 `;
 
-export const CartItemsCount = styled.span`
+export const MiniCartItemsCount = styled.span`
   position: absolute;
   height: 15px;
   width: 15px;
@@ -29,7 +37,7 @@ export const CartItemsCount = styled.span`
   color: #fff;
 `;
 
-export const CartIcon = styled.img`
+export const MiniCartIcon = styled.img`
   height: 40px;
   width: 40px;
 `;

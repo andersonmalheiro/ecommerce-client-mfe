@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  CartContainer,
-  CartContent,
-  CartEmptyMsg,
-  CartItem,
-  CartTitle,
+  MiniCartEmptyMsg,
+  MiniCartItem,
+  MiniCartPopupContainer,
+  MiniCartPopupContent,
+  MiniCartPopupFooter,
+  MiniCartPopupTitle,
 } from './MiniCartPopup.styles';
 
 type Side = 'left' | 'right';
@@ -31,9 +32,10 @@ export const MiniCartPopup = (props: MiniCartProps) => {
   const [arrowSide, setArrowSide] = React.useState<Side>('right');
   const [popupOffset, setPopupOffset] = React.useState<number>(0);
 
-  const totalValue = React.useMemo(() => {
-    return items.reduce((acc, curr) => acc + curr.quantity * curr.unitValue, 0);
-  }, [items]);
+  const totalValue = React.useMemo(
+    () => items.reduce((acc, curr) => acc + curr.quantity * curr.unitValue, 0),
+    [items],
+  );
 
   const getArrowSide = () => {
     if (ref.current) {
@@ -50,8 +52,6 @@ export const MiniCartPopup = (props: MiniCartProps) => {
       if (left < 0) {
         setArrowSide('left');
         setPopupOffset(0);
-
-        return;
       }
     }
   };
@@ -61,33 +61,37 @@ export const MiniCartPopup = (props: MiniCartProps) => {
   }, []);
 
   return (
-    <CartContainer ref={ref} side={arrowSide} offset={popupOffset}>
-      <CartTitle>Cart</CartTitle>
-      <CartContent>
+    <MiniCartPopupContainer ref={ref} side={arrowSide} offset={popupOffset}>
+      <MiniCartPopupTitle>Cart</MiniCartPopupTitle>
+      <MiniCartPopupContent>
         {items && items.length ? (
           <ul>
             {items.map((item) => (
               <li key={item?.id}>
-                <CartItem>
+                <MiniCartItem>
                   <div>
-                    <span className="count">{item.quantity}x</span>
+                    <span className="count">{`${item.quantity}x`}</span>
                     <span className="name">{item.name}</span>
                   </div>
 
                   <span className="value">
                     {currencyFormatter.format(item.quantity * item.unitValue)}
                   </span>
-                </CartItem>
+                </MiniCartItem>
               </li>
             ))}
           </ul>
         ) : (
-          <CartEmptyMsg>Your cart is empty</CartEmptyMsg>
+          <MiniCartEmptyMsg>Your cart is empty</MiniCartEmptyMsg>
         )}
-      </CartContent>
-      <div>
-        <strong>Total:</strong> {currencyFormatter.format(totalValue)}
-      </div>
-    </CartContainer>
+      </MiniCartPopupContent>
+
+      {!!items.length && (
+        <MiniCartPopupFooter>
+          <strong>Total:</strong>
+          <span>{currencyFormatter.format(totalValue)}</span>
+        </MiniCartPopupFooter>
+      )}
+    </MiniCartPopupContainer>
   );
 };
