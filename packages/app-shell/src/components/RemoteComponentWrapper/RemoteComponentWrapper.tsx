@@ -1,6 +1,6 @@
-import React from "react";
-import ErrorBoundary from "../../error-boundary";
-import Fallback from "../../fallback";
+import React from 'react';
+import ErrorBoundary from '../../error-boundary';
+import Fallback from '../../fallback';
 
 const RemoteComponentWrapper: React.FC<{ message: string }> = ({
   children,

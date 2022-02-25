@@ -1,1 +1,1 @@
-export { default } from "./RegisterWrapper";
+export { default } from './RegisterWrapper';

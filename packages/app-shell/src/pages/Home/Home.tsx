@@ -1,16 +1,16 @@
-import React from "react";
-import { IHeaderProps } from "shared-types";
-import ErrorBoundary from "../../error-boundary";
-import Fallback from "../../fallback";
+import React from 'react';
+import { IHeaderProps } from 'shared-types';
+import ErrorBoundary from '../../error-boundary';
+import Fallback from '../../fallback';
 
 const Header = React.lazy(
-  () => import("shared_components/Header")
+  () => import('shared_components/Header'),
 ) as React.FC<IHeaderProps>;
 
-const Footer = React.lazy(() => import("shared_components/Footer"));
+const Footer = React.lazy(() => import('shared_components/Footer'));
 
-export default function Home() {
-  document.title = "MF - Home";
+const Home = () => {
+  document.title = 'MF - Home';
 
   return (
     <ErrorBoundary errorMessage="Components service unavailable">
@@ -25,4 +25,6 @@ export default function Home() {
       </React.Suspense>
     </ErrorBoundary>
   );
-}
+};
+
+export default Home;

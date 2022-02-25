@@ -1,15 +1,15 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "../dist"),
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../dist'),
     clean: true,
   },
 
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
   },
 
   devServer: {
@@ -17,7 +17,7 @@ module.exports = {
     historyApiFallback: true,
     open: false,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      'Access-Control-Allow-Origin': '*',
     },
   },
 
@@ -25,20 +25,20 @@ module.exports = {
     rules: [
       {
         test: /\.m?js/,
-        type: "javascript/auto",
+        type: 'javascript/auto',
         resolve: {
           fullySpecified: false,
         },
       },
       {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
     ],
@@ -46,7 +46,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
     }),
   ],
 };

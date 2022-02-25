@@ -1,17 +1,18 @@
-const { merge } = require("webpack-merge");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { merge } = require('webpack-merge');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const commonConfig = require("./webpack.common");
-const deps = require("../package.json").dependencies;
+const commonConfig = require('./webpack.common');
+const deps = require('../package.json').dependencies;
+
 const domain = process.env.PRODUCTION_DOMAIN;
 
 const prodConfig = {
-  mode: "production",
+  mode: 'production',
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "app_shell",
-      filename: "remoteEntry.js",
+      name: 'app_shell',
+      filename: 'remoteEntry.js',
       remotes: {
         auth_mf: `auth_mf@${domain}/remoteEntry.js`,
         catalog_mf: `catalog_mf@${domain}/remoteEntry.js`,
@@ -23,17 +24,17 @@ const prodConfig = {
           singleton: true,
           requiredVersion: deps.react,
         },
-        "react-dom": {
+        'react-dom': {
           singleton: true,
-          requiredVersion: deps["react-dom"],
+          requiredVersion: deps['react-dom'],
         },
-        "react-toastify": {
+        'react-toastify': {
           singleton: true,
-          requiredVersion: deps["react-toastify"],
+          requiredVersion: deps['react-toastify'],
         },
-        "react-router-dom": {
+        'react-router-dom': {
           singleton: true,
-          requiredVersion: deps["react-router-dom"],
+          requiredVersion: deps['react-router-dom'],
         },
       },
     }),

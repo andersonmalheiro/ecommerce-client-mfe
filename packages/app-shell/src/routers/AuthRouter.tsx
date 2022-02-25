@@ -1,7 +1,7 @@
-import React from "react";
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import LoginWrapper from "../components/LoginWrapper";
-import RegisterWrapper from "../components/RegisterWrapper";
+import React from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import LoginWrapper from '../components/LoginWrapper';
+import RegisterWrapper from '../components/RegisterWrapper';
 
 const AuthRouterOutlet = () => <Outlet />;
 

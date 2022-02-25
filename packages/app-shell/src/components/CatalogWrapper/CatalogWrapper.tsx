@@ -1,12 +1,12 @@
-import React from "react";
-import RemoteComponentWrapper from "../RemoteComponentWrapper";
+import React from 'react';
+import RemoteComponentWrapper from '../RemoteComponentWrapper';
 
-const Catalog = React.lazy(() => import("catalog_mf/Main"));
-const Header = React.lazy(() => import("shared_components/Header"));
-const Footer = React.lazy(() => import("shared_components/Footer"));
+const Catalog = React.lazy(() => import('catalog_mf/Main'));
+const Header = React.lazy(() => import('shared_components/Header'));
+const Footer = React.lazy(() => import('shared_components/Footer'));
 
 const CatalogWrapper = () => {
-  document.title = "MF - Catalog";
+  document.title = 'MF - Catalog';
 
   return (
     <>
@@ -17,7 +17,7 @@ const CatalogWrapper = () => {
       <RemoteComponentWrapper message="Catalog not available...">
         <div
           style={{
-            height: "calc(100vh - 100px)",
+            height: 'calc(100vh - 100px)',
           }}
         >
           <Catalog />

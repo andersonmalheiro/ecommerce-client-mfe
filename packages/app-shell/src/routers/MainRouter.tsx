@@ -1,7 +1,7 @@
-import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import CatalogWrapper from "../components/CatalogWrapper";
-import AuthRouter from "./AuthRouter";
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import CatalogWrapper from '../components/CatalogWrapper';
+import AuthRouter from './AuthRouter';
 
 const MainRouter = () => (
   <Routes>
