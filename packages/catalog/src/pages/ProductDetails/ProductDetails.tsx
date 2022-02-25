@@ -1,19 +1,19 @@
 import React from "react";
-import {
-  Container,
-  GoBackBtn,
-  DetailsCard,
-  DetailsContainer,
-  ProductImg,
-  ProductImgContainer,
-  ProductPrice,
-  ProductName,
-  ProductDescription,
-} from "./ProductDetails.styles";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { ProductProps } from "../../components/Product/Product";
 import currency from "../../utils/currency";
 import { randomId } from "../../utils/random";
+import {
+  Container,
+  DetailsCard,
+  DetailsContainer,
+  GoBackBtn,
+  ProductDescription,
+  ProductImg,
+  ProductImgContainer,
+  ProductName,
+  ProductPrice,
+} from "./ProductDetails.styles";
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -29,10 +29,12 @@ const ProductDetails = () => {
     vendor_name: "Vendor name",
   };
 
+  console.log("location.pathname :>> ", location.pathname);
+
   return (
     <Container>
       <h1>Product details</h1>
-      <GoBackBtn to={location.pathname === "/catalog" ? "/catalog" : "/"}>
+      <GoBackBtn to={location.pathname.includes("/catalog") ? "/catalog" : "/"}>
         Go back
       </GoBackBtn>
 
