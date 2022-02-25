@@ -1,6 +1,6 @@
 # Micro-frontends / Microservices application
 
-The main objective of this repository is to create a full-stack implementation of a simple e-commerce application, but involving micro-front-ends and services, CI / CD, deploy using AWS, focusing on learning new technologies.
+The main objective of this repository is to create a implementation of a simple e-commerce application, but involving micro-front-ends, CI / CD, deploy using AWS, focusing on learning new technologies.
 
 ---
 
@@ -12,7 +12,7 @@ The app will consist in a set of simple micro-(frontends | services):
 
 - **Catalog micro-frontend app**: implemented with **Kotlin / Spring Boot** on server side and **ReactJS** on client side with its own routing structure;
 
-- **Cart micro-frontend app**: (_to be defined_);
+- **Cart micro-frontend app**: implemented with **ReactJS** for now;;
 
 - **Shared components micro-frontend app**: implemented with **ReactJS** for now;
 
@@ -22,18 +22,12 @@ The app will consist in a set of simple micro-(frontends | services):
 
 ## 🚀 Running the app
 
-For the frontend you will need to go inside each app on the `frontend/packages` folder and install their dependencies with `npm install` or `yarn install`
+Install the dependencies with `npm install` or `yarn install` in the project root folder.
 
-After that you can start each application separately running `npm start` or `yarn start` inside each folder OR you can go to the `frontend` folder and run all apps in parallel with the same command.
+After that you can start each application separately running `npm start` or `yarn start` inside each folder on `packages` dir OR you can run the same command in the root folder to start all apps in parallel.
 
 ---
 
 ### 🐋 Docker
 
 In the future the entire application can be started by running `docker-compose up` in the root folder. This will run the database, services and clients in a docker environment, but for now only the **auth** app is dockerized.
-
-### 🔐 Auth
-
-For the auth app configuration, copy the `.env.example` in the root folder and rename it to `.env`. Inside it you will find the environment variables necessary to the database image and database connections work. So with that in mind, you need to change the values to the ones that best suit your situation.
-
-You can start it alone by running `docker-compose up server` and it will be available on `http://localhost:8080`
