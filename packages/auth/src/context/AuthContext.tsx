@@ -1,20 +1,23 @@
-import React from "react";
-import { useCookies } from "react-cookie";
+import { AxiosError } from 'axios';
+import React from 'react';
+import { useCookies } from 'react-cookie';
+
+type AuthState = 'checking' | 'authenticated' | 'not-authenticated';
 
 export interface AuthContextProps {
   authState?: AuthState;
   logout: () => void;
-  setAuthState: (value: AuthState) => void;
-  setToken: (value: string) => void;
+  setAuthState(value: AuthState): void;
+  setToken(value: string): void;
   token: string | undefined;
 }
 
+const { error } = console;
+
 export const AuthContext = React.createContext({} as AuthContextProps);
 
-type AuthState = "checking" | "authenticated" | "not-authenticated";
-
 const AuthContextProvider: React.FC = ({ children }) => {
-  const [cookies, , removeCookie] = useCookies(["auth"]);
+  const [cookies, , removeCookie] = useCookies(['auth']);
   const [token, setToken] = React.useState<string>();
   const [authState, setAuthState] = React.useState<AuthState>();
 
@@ -25,36 +28,36 @@ const AuthContextProvider: React.FC = ({ children }) => {
 
     return new Promise<void>((resolve, reject) => {
       const { auth } = cookies;
-      const access_token = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
 
-      if (access_token === null && auth) {
+      if (accessToken === null && auth) {
         setToken(auth);
         resolve();
       }
 
-      if (access_token) {
-        setToken(access_token);
+      if (accessToken) {
+        setToken(accessToken);
         resolve();
       }
 
-      reject(new Error("No token found neither on localStorage or cookies"));
+      reject(new Error('No token found neither on localStorage or cookies'));
     });
   }, [token]);
 
   const handleCheck = React.useCallback(async () => {
     try {
       await checkToken();
-      setAuthState("authenticated");
-    } catch (error) {
-      console.error((error as { message: string }).message);
-      setAuthState("not-authenticated");
+      setAuthState('authenticated');
+    } catch (err) {
+      error((err as AxiosError).message);
+      setAuthState('not-authenticated');
     }
   }, [authState, checkToken]);
 
   const logout = () => {
-    removeCookie("auth", { path: "/" });
-    localStorage.removeItem("access_token");
-    setAuthState("not-authenticated");
+    removeCookie('auth', { path: '/' });
+    localStorage.removeItem('access_token');
+    setAuthState('not-authenticated');
     setToken(undefined);
   };
 
@@ -62,18 +65,19 @@ const AuthContextProvider: React.FC = ({ children }) => {
     handleCheck();
   }, [handleCheck]);
 
+  const contextValue = React.useMemo(
+    () => ({
+      authState,
+      logout,
+      setAuthState,
+      setToken,
+      token,
+    }),
+    [authState, logout, setAuthState, setToken, token],
+  );
+
   return (
-    <AuthContext.Provider
-      value={{
-        authState,
-        logout,
-        setAuthState,
-        setToken,
-        token,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 

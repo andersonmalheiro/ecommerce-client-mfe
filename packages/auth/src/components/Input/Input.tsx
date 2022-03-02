@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   InputStyled,
   Label,
   RequiredIndicator,
-} from "./Input.styles";
+} from './Input.styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -17,7 +17,7 @@ const Input = (props: InputProps) => {
     <Container>
       {label && (
         <Label>
-          {label} {required && <RequiredIndicator />}{" "}
+          {label} {required && <RequiredIndicator />}{' '}
         </Label>
       )}
       <InputStyled required={required} {...rest} />

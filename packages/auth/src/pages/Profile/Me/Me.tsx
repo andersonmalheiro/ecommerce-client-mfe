@@ -1,8 +1,8 @@
-import jwt_decode from "jwt-decode";
-import React from "react";
-import { AuthContext } from "../../../context/AuthContext";
-import { getUser, IUserData } from "../../../services/user.service";
-import { Container, ProfileCard, ProfileDataRow } from "./Me.styles";
+import jwt_decode from 'jwt-decode';
+import React from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+import { getUser, IUserData } from '../../../services/user.service';
+import { Container, ProfileCard, ProfileDataRow } from './Me.styles';
 
 type TokenData = {
   userId: number;
@@ -20,7 +20,9 @@ const Me = () => {
 
       try {
         const res = await getUser(decoded.userId);
-        res && setUser(res);
+        if (res) {
+          setUser(res);
+        }
       } catch (error) {
         setUser(undefined);
       }
@@ -38,11 +40,11 @@ const Me = () => {
       <ProfileCard>
         <h1>Details</h1>
         <ProfileDataRow>
-          <label>Name: </label>
+          <strong>Name: </strong>
           <span>{user?.name}</span>
         </ProfileDataRow>
         <ProfileDataRow>
-          <label>Created at</label>
+          <strong>Created at</strong>
           <span>{user?.createdAt}</span>
         </ProfileDataRow>
       </ProfileCard>

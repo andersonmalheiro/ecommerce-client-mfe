@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 const baseStyle = css({
   borderRadius: 0,
-  padding: "5px 10px",
-  width: "fit-content",
-  border: "1px solid",
-  cursor: "pointer",
-  transition: "all 0.3s ease-in-out",
-  outline: "none",
-  textDecoration: "none",
-  fontSize: "13px",
+  padding: '5px 10px',
+  width: 'fit-content',
+  border: '1px solid',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease-in-out',
+  outline: 'none',
+  textDecoration: 'none',
+  fontSize: '13px',
 });
 
 const basePrimary = css`

@@ -1,1 +1,1 @@
-export { default } from "./AuthStatus";
+export { default } from './AuthStatus';

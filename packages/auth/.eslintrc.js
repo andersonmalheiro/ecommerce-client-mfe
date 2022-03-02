@@ -1,0 +1,56 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'airbnb',
+    'prettier',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {
+    'camelcase': 'off',
+    'consistent-return': 'off',
+    'prettier/prettier': 'error',
+    'arrow-body-style': 'warn',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'quotes': 'warn',
+    'quote-props': 'off',
+    'max-len': [2, { code: 80, tabWidth: 2 }],
+    'no-unused-vars': 'off',
+    'import/prefer-default-export': 'off',
+    'no-restricted-exports': 'off',
+    'object-curly-newline': 'off',
+    'operator-linebreak': 'off',
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+    'react/jsx-filename-extension': [
+      1,
+      { allow: 'as-needed', extensions: ['.jsx', '.tsx'] },
+    ],
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-no-useless-fragment': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+  },
+  ignorePatterns: ['webpack.*'],
+};

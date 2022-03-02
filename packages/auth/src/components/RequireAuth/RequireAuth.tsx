@@ -1,6 +1,6 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const RequireAuth: React.FC = ({ children }) => {
   const { authState } = useAuth();
@@ -9,15 +9,15 @@ const RequireAuth: React.FC = ({ children }) => {
     return null;
   }
 
-  if (authState === "checking") {
+  if (authState === 'checking') {
     return <div>checking...</div>;
   }
 
-  if (authState === "not-authenticated") {
+  if (authState === 'not-authenticated') {
     return <Navigate to="/" />;
   }
 
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 };
 
 export default RequireAuth;

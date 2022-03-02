@@ -1,4 +1,4 @@
-import API from "../api/api";
+import API from '../api/api';
 
 interface LoginData {
   email: string;
@@ -15,20 +15,23 @@ interface RegisterData {
   password: string;
 }
 
-export async function login(data: LoginData) {
+const { error } = console;
+
+export async function login(
+  data: LoginData,
+): Promise<LoginResponse | undefined> {
   try {
-    const res = await API.post<LoginResponse>("/auth/login", data);
-    return res;
-  } catch (error) {
-    throw error;
+    const res = await API.post<LoginResponse>('/auth/login', data);
+    return res.data;
+  } catch (err) {
+    error(err);
   }
 }
 
 export async function register(data: RegisterData) {
   try {
-    const res = await API.post("/auth/register", data);
-    return res;
-  } catch (error) {
-    throw error;
+    await API.post('/auth/register', data);
+  } catch (err) {
+    error(err);
   }
 }

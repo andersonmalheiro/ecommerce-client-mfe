@@ -1,12 +1,12 @@
-import React from "react";
-import { Outlet } from "react-router";
-import { AuthContext } from "../../context/AuthContext";
+import React from 'react';
+import { Outlet } from 'react-router';
+import { AuthContext } from '../../context/AuthContext';
 import {
   Container,
   MainContent,
   Sidebar,
   SidebarTitle,
-} from "./Profile.styles";
+} from './Profile.styles';
 
 const Profile = () => {
   const { logout } = React.useContext(AuthContext);
@@ -15,8 +15,10 @@ const Profile = () => {
     <Container>
       <Sidebar>
         <SidebarTitle>My Profile</SidebarTitle>
-        <div></div>
-        <button onClick={() => logout()}>logout</button>
+        <div />
+        <button type="button" onClick={() => logout()}>
+          logout
+        </button>
       </Sidebar>
 
       <MainContent>

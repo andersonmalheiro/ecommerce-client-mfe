@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -19,8 +19,4 @@ export const ProfileCard = styled.div`
 export const ProfileDataRow = styled.div`
   display: flex;
   gap: 10px;
-
-  & label {
-    font-weight: bold;
-  }
 `;

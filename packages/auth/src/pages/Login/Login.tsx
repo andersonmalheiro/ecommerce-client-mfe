@@ -1,25 +1,25 @@
-import React from "react";
-import { useCookies } from "react-cookie";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import { useAuth } from "../../context/AuthContext";
-import { login } from "../../services/auth.service";
-import styles from "./Login.module.css";
+import { AxiosError } from 'axios';
+import React from 'react';
+import { useCookies } from 'react-cookie';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import { useAuth } from '../../context/AuthContext';
+import { login } from '../../services/auth.service';
+import styles from './Login.module.css';
 
 interface LoginProps {
   registerLink: string;
-  navigateToOnSuccess?: string;
 }
 
 const Login: React.FC<LoginProps> = (props) => {
-  const { navigateToOnSuccess, registerLink, ...rest } = props;
+  const { registerLink, ...rest } = props;
   const { setAuthState } = useAuth();
   const navigate = useNavigate();
-  const [_, setCookie] = useCookies(["auth"]);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [, setCookie] = useCookies(['auth']);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,28 +27,29 @@ const Login: React.FC<LoginProps> = (props) => {
     try {
       const res = await login({ email, password });
 
-      toast.success("Logged successfully", {
+      toast.success('Logged successfully', {
         autoClose: 3000,
         pauseOnHover: false,
-        position: "top-right",
+        position: 'top-right',
       });
 
-      const { access_token } = res.data;
-      setCookie("auth", `${access_token}`, { path: "/" });
-      localStorage.setItem("access_token", access_token);
-      setAuthState("authenticated");
-      navigate("/profile");
+      if (res) {
+        const { access_token: accessToken } = res;
+        setCookie('auth', `${accessToken}`, { path: '/' });
+        localStorage.setItem('access_token', accessToken);
+        setAuthState('authenticated');
+        navigate('/profile');
+      }
     } catch (error) {
-      console.error(error);
       toast.error(
         `Ops... ${
-          (error as any)?.response?.data?.msg || "something went wrong"
+          (error as AxiosError)?.response?.data?.msg || 'something went wrong'
         }`,
         {
           autoClose: 3000,
           pauseOnHover: false,
-          position: "top-right",
-        }
+          position: 'top-right',
+        },
       );
     }
   };
@@ -65,7 +66,7 @@ const Login: React.FC<LoginProps> = (props) => {
           id="email"
           placeholder="email@email.com"
           autoComplete="off"
-          value={email || ""}
+          value={email || ''}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -76,7 +77,7 @@ const Login: React.FC<LoginProps> = (props) => {
           name="password"
           id="password"
           placeholder="******"
-          value={password || ""}
+          value={password || ''}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -88,7 +89,8 @@ const Login: React.FC<LoginProps> = (props) => {
         </div>
 
         <p className={styles.register}>
-          New user? <Link to={registerLink}>Register now</Link>
+          <span>New user?</span>
+          <Link to={registerLink}>Register now</Link>
         </p>
       </form>
     </div>

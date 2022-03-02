@@ -1,4 +1,4 @@
-import API from "../api/api";
+import API from '../api/api';
 
 export interface IUserData {
   createdAt: string;
@@ -6,11 +6,13 @@ export interface IUserData {
   id: string;
 }
 
-export async function getUser(id: number): Promise<IUserData | null> {
+const { error } = console;
+
+export async function getUser(id: number): Promise<IUserData | undefined> {
   try {
     const res = await API.get<IUserData>(`/users/${id}`);
     return res.data;
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    error(err);
   }
 }

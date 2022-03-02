@@ -1,4 +1,6 @@
-declare module "*.css" {
+/* eslint-disable no-undef */
+
+declare module '*.css' {
   interface IClassNames {
     [className: string]: string;
   }
@@ -6,16 +8,16 @@ declare module "*.css" {
   export = classNames;
 }
 
-declare module "shared_components/*" {
-  const components: React.ComponentType<any>;
+declare module 'shared_components/*' {
+  const components: React.ComponentType<unknown>;
 
   export = components;
 }
 
-declare module "*.svg" {
-  import * as React from "react";
+declare module '*.svg' {
+  import * as React from 'react';
 
-  export const ReactComponent: React.FunctionComponent<
+  export const RC: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & { title?: string }
   >;
 

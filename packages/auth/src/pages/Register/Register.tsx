@@ -1,11 +1,11 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import { register } from "../../services/auth.service";
-
-import styles from "./Register.module.css";
+import { AxiosError } from 'axios';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import { register } from '../../services/auth.service';
+import styles from './Register.module.css';
 
 interface RegisterProps {
   loginLink: string;
@@ -13,9 +13,9 @@ interface RegisterProps {
 
 const Register = (props: RegisterProps) => {
   const { loginLink } = props;
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,24 +24,24 @@ const Register = (props: RegisterProps) => {
     try {
       await register({ name, email, password });
 
-      toast.success("Registered successfully", {
+      toast.success('Registered successfully', {
         autoClose: 3000,
-        onClose: () => navigate("/"),
+        onClose: () => navigate('/'),
         pauseOnHover: false,
-        position: "top-right",
+        position: 'top-right',
       });
     } catch (error) {
       toast.error(
         `Ops... ${
-          (error as any)?.response?.data?.msg ||
-          (error as any)?.message ||
-          "something went wrong"
+          (error as AxiosError)?.response?.data?.msg ||
+          (error as AxiosError)?.message ||
+          'something went wrong'
         }`,
         {
           autoClose: 3000,
           pauseOnHover: false,
-          position: "top-right",
-        }
+          position: 'top-right',
+        },
       );
     }
   };
@@ -58,7 +58,7 @@ const Register = (props: RegisterProps) => {
           id="name"
           placeholder="John Doe"
           autoComplete="off"
-          value={name || ""}
+          value={name || ''}
           onChange={(e) => setName(e.target.value)}
           required
         />
@@ -70,7 +70,7 @@ const Register = (props: RegisterProps) => {
           id="email"
           placeholder="email@email.com"
           autoComplete="off"
-          value={email || ""}
+          value={email || ''}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -81,7 +81,7 @@ const Register = (props: RegisterProps) => {
           name="password"
           id="password"
           placeholder="******"
-          value={password || ""}
+          value={password || ''}
           onChange={(e) => setPassword(e.target.value)}
           required
         />

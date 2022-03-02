@@ -1,8 +1,8 @@
-import React from "react";
-import { useCookies } from "react-cookie";
-import { ReactComponent as AuthenticatedIcon } from "../../assets/authenticated.svg";
-import { ReactComponent as UnauthenticatedIcon } from "../../assets/unauthenticated.svg";
-import { AuthButton } from "./AuthStatus.styles";
+import React from 'react';
+import { useCookies } from 'react-cookie';
+import { RC as AuthenticatedIcon } from '../../assets/authenticated.svg';
+import { RC as UnauthenticatedIcon } from '../../assets/unauthenticated.svg';
+import { AuthButton } from './AuthStatus.styles';
 
 interface AuthStatusProps {
   handleAction: () => void;
@@ -11,34 +11,30 @@ interface AuthStatusProps {
 const AuthStatus = (props: AuthStatusProps) => {
   const { handleAction } = props;
 
-  const [cookies] = useCookies(["auth"]);
+  const [cookies] = useCookies(['auth']);
   const [signed, setSigned] = React.useState(false);
 
   React.useEffect(() => {
     const { auth } = cookies;
-    const access_token = localStorage.getItem("access_token");
+    const accessToken = localStorage.getItem('access_token');
 
     if (
-      (access_token === null && auth) ||
-      (access_token && !auth) ||
-      (auth && access_token)
+      (accessToken === null && auth) ||
+      (accessToken && !auth) ||
+      (auth && accessToken)
     ) {
       setSigned(true);
     }
   }, [cookies.auth]);
 
-  return (
-    <>
-      {signed ? (
-        <AuthButton title="Signed in">
-          <AuthenticatedIcon />
-        </AuthButton>
-      ) : (
-        <AuthButton onClick={handleAction} title="Not signed">
-          <UnauthenticatedIcon />
-        </AuthButton>
-      )}
-    </>
+  return signed ? (
+    <AuthButton title="Signed in">
+      <AuthenticatedIcon />
+    </AuthButton>
+  ) : (
+    <AuthButton onClick={handleAction} title="Not signed">
+      <UnauthenticatedIcon />
+    </AuthButton>
   );
 };
 

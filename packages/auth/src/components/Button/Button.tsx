@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   ButtonBase,
   ButtonLinkBase,
@@ -6,9 +6,9 @@ import {
   ButtonLinkSecondary,
   ButtonPrimary,
   ButtonSecondary,
-} from "./Button.styles";
+} from './Button.styles';
 
-type BtnVariant = "primary" | "secondary";
+type BtnVariant = 'primary' | 'secondary';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: BtnVariant;
@@ -21,25 +21,25 @@ const Button = (props: ButtonProps) => {
 
   if (isLink) {
     switch (variant) {
-      case "primary":
+      case 'primary':
         return (
-          <ButtonLinkPrimary to={link || ""}>{children}</ButtonLinkPrimary>
+          <ButtonLinkPrimary to={link || ''}>{children}</ButtonLinkPrimary>
         );
 
-      case "secondary":
+      case 'secondary':
         return (
-          <ButtonLinkSecondary to={link || ""}>{children}</ButtonLinkSecondary>
+          <ButtonLinkSecondary to={link || ''}>{children}</ButtonLinkSecondary>
         );
 
       default:
-        return <ButtonLinkBase to={link || ""}>{children}</ButtonLinkBase>;
+        return <ButtonLinkBase to={link || ''}>{children}</ButtonLinkBase>;
     }
   } else {
     switch (variant) {
-      case "primary":
+      case 'primary':
         return <ButtonPrimary {...rest}>{children}</ButtonPrimary>;
 
-      case "secondary":
+      case 'secondary':
         return <ButtonSecondary {...rest}>{children}</ButtonSecondary>;
 
       default:

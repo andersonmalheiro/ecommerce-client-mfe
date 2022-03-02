@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ export const InputStyled = styled.input`
 
 export const RequiredIndicator = styled.span`
   &::before {
-    content: "*";
+    content: '*';
     color: red;
     font-size: 14px;
   }

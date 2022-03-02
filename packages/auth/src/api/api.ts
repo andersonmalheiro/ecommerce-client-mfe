@@ -1,8 +1,8 @@
-import axios from "axios";
-import { Cookies } from "react-cookie";
+import axios from 'axios';
+import { Cookies } from 'react-cookie';
 
 const API = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: 'http://localhost:8080',
 });
 
 API.interceptors.request.use((config) => {
@@ -10,7 +10,7 @@ API.interceptors.request.use((config) => {
   const cookies = new Cookies();
 
   if (newConfig.headers) {
-    newConfig.headers["Authorization"] = `Bearer ${cookies.get("auth")}`;
+    newConfig.headers.Authorization = `Bearer ${cookies.get('auth')}`;
   }
 
   return newConfig;
