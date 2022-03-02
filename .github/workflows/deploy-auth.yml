@@ -50,7 +50,7 @@ jobs:
         run: yarn install
 
       - name: Lint
-        run: yarn build
+        run: yarn lint
 
       - name: Build
         run: yarn build
@@ -62,7 +62,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Build & Deploy (S1)
+      - name: Deploy S3
         run: |-
           aws s3 sync \
             --no-progress \
