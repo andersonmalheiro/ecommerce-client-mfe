@@ -68,4 +68,4 @@ jobs:
           --no-progress \
           --delete \
           --acl public-read \
-          ./build/ s3://ecommerce-mfe/auth
+          ./dist/ s3://ecommerce-mfe/auth
