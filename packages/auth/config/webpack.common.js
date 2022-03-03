@@ -5,10 +5,13 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const deps = require('../package.json').dependencies;
 
 module.exports = {
+  entry: path.resolve(__dirname, '../src/index.ts'),
+
   output: {
+    clean: true,
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
-    clean: true,
+    publicPath: '/',
   },
 
   resolve: {

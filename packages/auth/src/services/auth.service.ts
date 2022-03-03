@@ -25,6 +25,7 @@ export async function login(
     return res.data;
   } catch (err) {
     error(err);
+    throw err;
   }
 }
 

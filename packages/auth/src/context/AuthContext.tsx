@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import React from 'react';
 import { useCookies } from 'react-cookie';
 
@@ -49,7 +48,6 @@ const AuthContextProvider: React.FC = ({ children }) => {
       await checkToken();
       setAuthState('authenticated');
     } catch (err) {
-      error((err as AxiosError).message);
       setAuthState('not-authenticated');
     }
   }, [authState, checkToken]);

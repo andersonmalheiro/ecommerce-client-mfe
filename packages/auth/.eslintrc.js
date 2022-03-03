@@ -33,6 +33,7 @@ module.exports = {
     'quote-props': 'off',
     'max-len': [2, { code: 80, tabWidth: 2, ignorePattern: '^import .*' }],
     'no-unused-vars': 'off',
+    'no-useless-catch': 'off',
     'import/prefer-default-export': 'off',
     'no-restricted-exports': 'off',
     'object-curly-newline': 'off',
