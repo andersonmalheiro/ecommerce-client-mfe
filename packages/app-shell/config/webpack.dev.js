@@ -11,6 +11,12 @@ const devConfig = {
   devtool: 'inline-source-map',
 
   devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    historyApiFallback: true,
+    open: false,
+    port: 3000,
     static: path.resolve(__dirname, '../dist'),
   },
 
@@ -26,7 +32,7 @@ const devConfig = {
       },
       shared: {
         ...deps,
-        react: {
+        'react': {
           singleton: true,
           requiredVersion: deps.react,
         },

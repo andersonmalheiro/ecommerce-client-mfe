@@ -2,23 +2,17 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  entry: path.resolve(__dirname, '../src/index.ts'),
+
   output: {
+    clean: true,
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
-    clean: true,
+    publicPath: '/',
   },
 
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
-  },
-
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
-    open: false,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
   },
 
   module: {
