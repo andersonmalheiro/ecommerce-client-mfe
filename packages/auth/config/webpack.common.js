@@ -1,23 +1,18 @@
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const deps = require('./package.json').dependencies;
+const deps = require('../package.json').dependencies;
 
 module.exports = {
   output: {
-    publicPath: 'http://localhost:4000/',
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../dist'),
+    clean: true,
   },
 
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
-  },
-
-  devServer: {
-    port: 4000,
-    historyApiFallback: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
   },
 
   module: {
@@ -64,11 +59,11 @@ module.exports = {
       filename: 'remoteEntry.js',
       remotes: {},
       exposes: {
-        './Login': './src/pages/Login',
-        './Register': './src/pages/Register',
         './AuthStatus': './src/components/AuthStatus',
         './Button': './src/components/Button',
         './Input': './src/components/Input',
+        './Login': './src/pages/Login',
+        './Register': './src/pages/Register',
       },
       shared: {
         ...deps,

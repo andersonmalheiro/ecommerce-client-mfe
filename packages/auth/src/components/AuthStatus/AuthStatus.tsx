@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
-import { RC as AuthenticatedIcon } from '../../assets/authenticated.svg';
-import { RC as UnauthenticatedIcon } from '../../assets/unauthenticated.svg';
+import { ReactComponent as AuthenticatedIcon } from '../../assets/authenticated.svg';
+import { ReactComponent as UnauthenticatedIcon } from '../../assets/unauthenticated.svg';
 import { AuthButton } from './AuthStatus.styles';
 
 interface AuthStatusProps {

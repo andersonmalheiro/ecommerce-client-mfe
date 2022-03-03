@@ -2,11 +2,11 @@
   "name": "auth",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
+    "build": "webpack --config config/webpack.prod.js",
+    "build:dev": "webpack --config config/webpack.dev.js",
     "build:start": "cd dist && PORT=4000 npx serve",
-    "start": "webpack serve --mode development",
-    "start:live": "webpack serve --mode development --live-reload --hot",
+    "start": "webpack serve --config config/webpack.dev.js",
+    "start:live": "webpack serve --config config/webpack.dev.js --live-reload --hot",
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"./**/*.{js,jsx,ts,tsx}\" --fix",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx}\""
@@ -46,6 +46,7 @@
     "prettier": "^2.5.1",
     "react-svg-loader": "^3.0.3",
     "style-loader": "^3.3.0",
+    "sugarss": "^4.0.1",
     "webpack": "^5.57.1",
     "webpack-cli": "^4.9.0",
     "webpack-dev-server": "^4.3.1"
