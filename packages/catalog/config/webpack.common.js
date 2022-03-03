@@ -1,22 +1,21 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
-const deps = require("./package.json").dependencies;
+const deps = require("../package.json").dependencies;
+
 module.exports = {
+  entry: path.resolve(__dirname, "../src/index.ts"),
+
   output: {
-    publicPath: "http://localhost:4002/",
+    clean: true,
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "../dist"),
+    publicPath: "/",
   },
 
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-  },
-
-  devServer: {
-    port: 4002,
-    historyApiFallback: true,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
   },
 
   module: {

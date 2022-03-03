@@ -2,16 +2,16 @@
   "name": "catalog",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
+    "build": "webpack --config config/webpack.prod.js",
+    "build:dev": "webpack --config config/webpack.dev.js",
     "build:start": "cd dist && PORT=4002 npx serve",
-    "start": "webpack serve --mode development",
-    "start:live": "webpack serve --mode development --live-reload --hot"
+    "start": "webpack serve --config config/webpack.dev.js",
+    "start:live": "webpack serve --config config/webpack.dev.js --live-reload --hot"
   },
   "license": "MIT",
   "author": {
-    "name": "Jack Herrington",
-    "email": "jherr@pobox.com"
+    "name": "Anderson Malheiro de Carvalho",
+    "email": "anderson.malheiro@aluno.fapce.edu.br"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
