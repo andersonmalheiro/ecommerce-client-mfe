@@ -1,6 +1,8 @@
 name: Deploy Auth MFE
 
 on:
+  workflow_dispatch:
+    
   push:
     branches:
       - main
