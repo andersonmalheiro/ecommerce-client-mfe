@@ -1,5 +1,12 @@
 import React from "react";
-import { Outlet, Route, Routes, useLocation } from "react-router-dom";
+import ReactDOM from "react-dom";
+import {
+  BrowserRouter,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import Catalog from "../pages/Catalog";
 import ProductDetails from "../pages/ProductDetails";
 
@@ -17,5 +24,15 @@ const CatalogRouter = () => {
     </Routes>
   );
 };
+
+export const mountCatalog = (element: HTMLElement) =>
+  ReactDOM.render(
+    <>
+      <BrowserRouter>
+        <CatalogRouter />
+      </BrowserRouter>
+    </>,
+    element
+  );
 
 export default CatalogRouter;
