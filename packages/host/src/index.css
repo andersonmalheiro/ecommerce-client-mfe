@@ -8,8 +8,9 @@ html, body {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: #efefef;
 }
 
-#slot-content {
+#content-slot {
   height: calc(100vh - 100px);
 }

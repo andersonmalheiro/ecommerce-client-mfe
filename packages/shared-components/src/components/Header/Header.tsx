@@ -1,19 +1,47 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ReactDOM from "react-dom";
+// @ts-ignore
 import { IHeaderProps } from "shared-types";
 import styles from "./Header.module.css";
 
-const AuthStatus = React.lazy(() => import("auth_mf/AuthStatus"));
-const MiniCart = React.lazy(() => import("cart_mf/MiniCart"));
+const AuthStatus = () => {
+  try {
+    const Component = React.lazy(() => import("auth_mf/AuthStatus"));
+
+    return (
+      <React.Suspense fallback={<span>loading</span>}>
+        <a href="/auth/login">
+          <Component />
+        </a>
+      </React.Suspense>
+    );
+  } catch (error) {
+    return <span>Error loading AuthStatus</span>;
+  }
+};
+
+const MiniCart = () => {
+  try {
+    const Component = React.lazy(() => import("cart_mf/MiniCart"));
+
+    return (
+      <React.Suspense fallback={<span>loading</span>}>
+        <Component />
+      </React.Suspense>
+    );
+  } catch (error) {
+    return <span>Error loading MiniCart</span>;
+  }
+};
 
 const Header = (props: IHeaderProps) => {
   const { title } = props;
 
   return (
     <div className={styles.container}>
-      <Link className={styles.logo} to="/">
+      <a className={styles.logo} href="/">
         {title}
-      </Link>
+      </a>
 
       <div
         style={{
@@ -22,18 +50,14 @@ const Header = (props: IHeaderProps) => {
           alignItems: "center",
         }}
       >
-        <React.Suspense fallback={<span>loading</span>}>
-          <MiniCart />
-        </React.Suspense>
-
-        <React.Suspense fallback={<span>loading</span>}>
-          <Link to="/auth/login">
-            <AuthStatus />
-          </Link>
-        </React.Suspense>
+        <AuthStatus />
+        <MiniCart />
       </div>
     </div>
   );
 };
+
+export const mountHeader = (title: string, element: HTMLElement) =>
+  ReactDOM.render(<Header title={title} />, element);
 
 export default Header;
