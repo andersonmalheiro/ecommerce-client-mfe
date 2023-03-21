@@ -1,19 +1,5 @@
-import API from '../api/api';
-
-interface LoginData {
-  email: string;
-  password: string;
-}
-
-interface LoginResponse {
-  access_token: string;
-}
-
-interface RegisterData {
-  name: string;
-  email: string;
-  password: string;
-}
+import API from '@api/api';
+import { LoginData, LoginResponse, RegisterData } from './auth.dto';
 
 const { error } = console;
 
@@ -33,6 +19,6 @@ export async function register(data: RegisterData) {
   try {
     await API.post('/auth/register', data);
   } catch (err) {
-    error(err);
+    throw err;
   }
 }
