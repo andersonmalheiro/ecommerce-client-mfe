@@ -1,7 +1,8 @@
+import { AuthContext } from '@context/AuthContext';
+import { User } from '@services/user/user.dto';
+import { getUser } from '@services/user/user.service';
 import jwt_decode from 'jwt-decode';
 import React from 'react';
-import { AuthContext } from '../../../context/AuthContext';
-import { getUser, IUserData } from '../../../services/user.service';
 import { Container, ProfileCard, ProfileDataRow } from './Me.styles';
 
 type TokenData = {
@@ -12,7 +13,7 @@ type TokenData = {
 
 const Me = () => {
   const { token } = React.useContext(AuthContext);
-  const [user, setUser] = React.useState<IUserData>();
+  const [user, setUser] = React.useState<User>();
 
   const loadData = async () => {
     if (token) {

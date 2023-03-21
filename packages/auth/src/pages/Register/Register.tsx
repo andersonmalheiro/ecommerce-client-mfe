@@ -1,10 +1,11 @@
+import Button from '@components/Button';
+import ErrorToast from '@components/ErrorToast';
+import Input from '@components/Input';
+import { register } from '@services/auth/auth.service';
 import { AxiosError } from 'axios';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import { register } from '../../services/auth.service';
 import styles from './Register.module.css';
 
 interface RegisterProps {
@@ -31,12 +32,12 @@ const Register = (props: RegisterProps) => {
         position: 'top-right',
       });
     } catch (error) {
+      const err = error as AxiosError;
       toast.error(
-        `Ops... ${
-          (error as AxiosError)?.response?.data?.msg ||
-          (error as AxiosError)?.message ||
-          'something went wrong'
-        }`,
+        <ErrorToast
+          errors={err?.response?.data?.errors || err.message}
+          title="Ops..."
+        />,
         {
           autoClose: 3000,
           pauseOnHover: false,

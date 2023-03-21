@@ -1,11 +1,11 @@
+import Button from '@components/Button';
+import Input from '@components/Input';
+import { login } from '@services/auth/auth.service';
 import { AxiosError } from 'axios';
 import React from 'react';
 import { useCookies } from 'react-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import { login } from '../../services/auth.service';
 import styles from './Login.module.css';
 
 interface LoginProps {
