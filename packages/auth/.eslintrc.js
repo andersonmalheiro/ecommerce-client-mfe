@@ -52,6 +52,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-no-useless-fragment': 'off',
+    'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
   },
   ignorePatterns: ['webpack.*'],

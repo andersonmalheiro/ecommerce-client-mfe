@@ -1,4 +1,5 @@
 import { AuthContext } from '@context/AuthContext';
+import withAuth from '@hoc/withAuth/withAuth';
 import { User } from '@services/user/user.dto';
 import { getUser } from '@services/user/user.service';
 import jwt_decode from 'jwt-decode';
@@ -53,4 +54,4 @@ const Me = () => {
   );
 };
 
-export default Me;
+export default withAuth(Me);

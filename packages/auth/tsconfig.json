@@ -21,6 +21,7 @@
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@context/*": ["context/*"],
+      "@hoc/*": ["hoc/*"],
       "@pages/*": ["pages/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],

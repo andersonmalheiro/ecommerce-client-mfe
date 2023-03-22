@@ -1,3 +1,4 @@
+import requireAuth from '@hoc/withAuth';
 import React from 'react';
 import { Outlet } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
@@ -28,4 +29,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default requireAuth(Profile);
