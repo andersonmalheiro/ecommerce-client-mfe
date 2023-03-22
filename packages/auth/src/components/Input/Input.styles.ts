@@ -26,6 +26,10 @@ export const InputStyled = styled.input`
     border-left: 2px solid #000;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 export const RequiredIndicator = styled.span`

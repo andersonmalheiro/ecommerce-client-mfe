@@ -11,6 +11,7 @@ const baseStyle = css({
   outline: 'none',
   textDecoration: 'none',
   fontSize: '13px',
+  height: '30px',
 });
 
 const basePrimary = css`
